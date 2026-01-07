@@ -141,14 +141,14 @@ function RunShellCommandAppInner({
             disabled={executionState !== "initialized"}
             onClick={handleAccept}
           >
-            Accept
+            Allow
           </button>
           <button
             className="btn-primary"
             disabled={executionState !== "initialized"}
             onClick={handleReject}
           >
-            Reject
+            Deny
           </button>
         </div>
       </div>
