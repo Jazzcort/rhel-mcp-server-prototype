@@ -61,6 +61,15 @@ To run the server only:
 npm run serve
 ```
 
+### Run Development Mode in Container
+```bash
+docker-compose up -d --build
+```
+or
+```bash
+podman compose up -d --build
+```
+
 ## Testing the Features
 
 Once the server is running, you can test the two main features:
