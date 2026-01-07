@@ -21,8 +21,5 @@ export default defineConfig({
     },
     outDir: "dist",
     emptyOutDir: false,
-    watch: {
-      exclude: ["dist/**"],
-    },
   },
 });
