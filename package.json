@@ -10,7 +10,7 @@
     "watch:run-shell-command-app": "cross-env INPUT=run-shell-command-app.html vite build --watch",
     "watch": "concurrently \"npm run watch:mcp-app\" \"npm run watch:run-shell-command-app\"",
     "serve": "bun server.ts",
-    "start": "cross-env NODE_ENV=development npm run build && npm run serve",
+    "start": "cross-env NODE_ENV=production npm run build && npm run serve",
     "dev": "cross-env NODE_ENV=development concurrently 'npm run watch' 'npm run serve'"
   },
   "dependencies": {
