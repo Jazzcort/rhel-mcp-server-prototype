@@ -115,11 +115,10 @@ function RunShellCommandAppInner({
   }, [app]);
 
   return (
-    <main className="p-2 ">
+    <main className="p-2">
       <p className="font-bold mb-4">Watch activity in the DevTools console!</p>
-
       <div className="flex">
-        <div className="grow">
+        <div className="flex-1 whitespace-pre-wrap break-all">
           <p>
             <strong>Execution State:</strong>{" "}
             <span className={pickStateColor(executionState)}>
@@ -135,7 +134,7 @@ function RunShellCommandAppInner({
             </p>
           )}
         </div>
-        <div className="flex">
+        <div className="flex-none">
           <button
             className="btn-primary"
             disabled={executionState !== "initialized"}
