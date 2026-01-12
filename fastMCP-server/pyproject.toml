@@ -1,0 +1,20 @@
+[project]
+name = "fastmcp-server"
+version = "0.1.0"
+description = "A MCP server that serves MCP apps"
+readme = "README.md"
+authors = [
+    {name = "Chih-Tao Lee", email = "jason101011113@gmail.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.25.0",
+]
+
+[project.scripts]
+mcp-serve = "fastmcp_server.main:main"
+# mcp-http-serve = "status_report_assistant_mcp.cli:http_main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
