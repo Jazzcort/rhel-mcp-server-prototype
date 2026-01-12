@@ -4,14 +4,17 @@
   "type": "module",
   "scripts": {
     "build": "concurrently \"npm run build:mcp-app\" \"npm run build:run-shell-command-app\"",
+    "build:prod": "cross-env NODE_ENV=production concurrently \"npm run build:mcp-app\" \"npm run build:run-shell-command-app\"",
     "build:mcp-app": "tsc --noEmit && cross-env INPUT=mcp-app.html vite build",
     "build:run-shell-command-app": "tsc --noEmit && cross-env INPUT=run-shell-command-app.html vite build",
     "watch:mcp-app": "cross-env INPUT=mcp-app.html vite build --watch",
     "watch:run-shell-command-app": "cross-env INPUT=run-shell-command-app.html vite build --watch",
     "watch": "concurrently \"npm run watch:mcp-app\" \"npm run watch:run-shell-command-app\"",
     "serve": "bun server.ts",
+    "serve:fastmcp": "cd ./fastMCP-server && uv run mcp-serve",
     "start": "cross-env NODE_ENV=production npm run build && npm run serve",
-    "dev": "cross-env NODE_ENV=development concurrently 'npm run watch' 'npm run serve'"
+    "dev": "cross-env NODE_ENV=development concurrently 'npm run watch' 'npm run serve'",
+    "dev:fastmcp": "cross-env NODE_ENV=development concurrently 'npm run watch' 'npm run serve:fastmcp'"
   },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^0.2.2",
