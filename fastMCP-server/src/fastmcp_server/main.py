@@ -11,6 +11,7 @@ from starlette.middleware.cors import CORSMiddleware
 HOST = os.environ.get("HOST", "0.0.0.0")
 PORT = int(os.environ.get("PORT", 3001))
 RUN_SHELL_COMMAND_URI = "ui://run-shell-command/run-shell-command-app.html"
+UI_RESOURCES_DIR = os.environ.get("UI_RESOURCES_DIR")
 
 URIS = set([RUN_SHELL_COMMAND_URI])
 
@@ -38,7 +39,14 @@ _low_level_server = mcp._mcp_server
 async def _read_resource_with_meta(req: types.ReadResourceRequest):
     uri = str(req.params.uri)
     file_name = uri.split("/")[-1]
-    html = Path(__file__).parents[3].joinpath(f"dist/{file_name}").read_text()
+
+    ui_resources_dir = (
+        Path(UI_RESOURCES_DIR)
+        if UI_RESOURCES_DIR
+        else Path(__file__).parents[3].joinpath("dist")
+    )
+
+    html = ui_resources_dir.joinpath(f"{file_name}").read_text()
 
     if uri in URIS:
         content = types.TextResourceContents.model_validate(
