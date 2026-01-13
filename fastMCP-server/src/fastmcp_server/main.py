@@ -18,7 +18,7 @@ URIS = set([RUN_SHELL_COMMAND_URI])
 mcp = FastMCP("RHEL MCP Server", port=PORT, stateless_http=True)
 
 
-@mcp.tool(meta={"ui/resourceUri": RUN_SHELL_COMMAND_URI})
+@mcp.tool(meta={"ui": {"resourceUri": RUN_SHELL_COMMAND_URI}})
 def run_shell_command(shellCommand: str) -> str:
     return shellCommand
 
