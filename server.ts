@@ -136,7 +136,11 @@ function createServer(): McpServer {
         if (stderr) {
           res = { content: [{ type: "text", text: stderr }], isError: true };
         } else {
-          res = { content: [{ type: "text", text: stdout }] };
+          res = {
+            content: [{ type: "text", text: stdout }],
+            isError: false,
+            structuredContent: { result: stdout },
+          };
         }
       } catch (error) {
         res = {
