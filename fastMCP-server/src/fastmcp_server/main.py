@@ -4,7 +4,7 @@ from pathlib import Path
 import subprocess
 
 import uvicorn
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 from mcp import types
 from starlette.middleware.cors import CORSMiddleware
 
@@ -15,7 +15,7 @@ UI_RESOURCES_DIR = os.environ.get("UI_RESOURCES_DIR")
 
 URIS = set([RUN_SHELL_COMMAND_URI])
 
-mcp = FastMCP("RHEL MCP Server", port=PORT, stateless_http=True)
+mcp = FastMCP("RHEL MCP Server", stateless_http=True)
 
 
 @mcp.tool(meta={"ui": {"resourceUri": RUN_SHELL_COMMAND_URI}})
@@ -76,7 +76,7 @@ def main():
     if "--stdio" in sys.argv:
         mcp.run(transport="stdio")
     else:
-        app = mcp.streamable_http_app()
+        app = mcp.http_app(transport="streamable-http")
         app.add_middleware(
             CORSMiddleware,
             allow_origins=["*"],
@@ -85,8 +85,6 @@ def main():
         )
 
         uvicorn.run(app, host=HOST, port=PORT)
-
-    print("Mcp server running")
 
 
 if __name__ == "__main__":
